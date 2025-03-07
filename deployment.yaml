@@ -32,7 +32,7 @@ spec:
               app: notification-service
       containers:
         - name: notification-service
-          image: morgan-elkins/frontend-flask-app:e2e3e828f3722660a876b5a6d18ed5110a253877
+          image: public.ecr.aws/i3m8z0o9/morgan/queues-repo:AWSProject_Frontend
           imagePullPolicy: Always
           ports:
           - containerPort: 5000
