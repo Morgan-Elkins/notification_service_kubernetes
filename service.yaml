@@ -1,0 +1,15 @@
+apiVersion:
+kind: Service
+metadata:
+  name: notification-service-service
+  namespace: notification-service
+  labels:
+    app: morgan
+spec:
+  selector:
+    app: morgan
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 5000
+  type: ClusterIP
