@@ -2,21 +2,21 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: notification-service-ingress
-  namespace: notification-service
+  namespace: notification-service-app
   annotations:
     kubernetes.io/ingress.class: "alb"
     alb.ingress.kubernetes.io/scheme: "internet-facing"
     alb.ingress.kubernetes.io/target-type: "ip"
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":443}]'
     alb.ingress.kubernetes.io/ssl-redirect: "443"
-    alb.ingress.kubernetes.io/certificate-arn: ""
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:eu-west-2:452968854315:certificate/94a4df27-8543-4d58-a370-25b24c4a6944
     alb.ingress.kubernetes.io/backend-protocol: "HTTP"
-    external-dns.alpha.kubernetes.io/hostname: ""
+    external-dns.alpha.kubernetes.io/hostname: morgan.netbuildertraining.com
     external-dns.alpha.kubernetes.io/alias: "true"
     external-dns.alpha.kubernetes.io/ttl: "60"
 spec:
   rules:
-  - host: ""
+  - host: morgan.netbuildertraining.com
     http:
       paths:
       - path: /

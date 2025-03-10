@@ -1,8 +1,8 @@
-apiVersion:
+apiVersion: v1
 kind: Service
 metadata:
   name: notification-service-service
-  namespace: notification-service
+  namespace: notification-service-app
   labels:
     app: morgan
 spec:

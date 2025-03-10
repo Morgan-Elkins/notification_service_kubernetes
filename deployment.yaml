@@ -1,4 +1,4 @@
-apiversion: apps/v2
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: notification-service
@@ -17,12 +17,12 @@ spec:
     spec:
       serviceAccountName: notification-service-app-service-account
       affinity:
-        podAntiAfinity:
+        podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
-            matchLabels:
-              app: notification-service
-          topologyKey: "kubernetes.io/hostname"
+            - labelSelector:
+                matchLabels:
+                  app: notification-service
+              topologyKey: "kubernetes.io/hostname"
       topologySpreadConstraints:
         - maxSkew: 1
           topologyKey: "kubernetes.io/hostname"
@@ -46,21 +46,21 @@ spec:
           env:
           - name: AWS_REGION
             valueFrom:
-              configMapRef:
+              configMapKeyRef:
                 name: notification-service-config
                 key: AWS_REGION
           - name: P1_QUEUE_URL
             valueFrom:
-            configMapRef:
-              name: notification-service-secrets
-              key: P1_QUEUE_URL
+              secretKeyRef:
+                name: notification-service-secrets
+                key: P1_QUEUE_URL
           - name: P2_QUEUE_URL
             valueFrom:
-            configMapRef:
-              name: notification-service-secrets
-              key: P2_QUEUE_URL
+              secretKeyRef:
+                name: notification-service-secrets
+                key: P2_QUEUE_URL
           - name: P3_QUEUE_URL
             valueFrom:
-            configMapRef:
-              name: notification-service-secrets
-              key: P3_QUEUE_URL
+              secretKeyRef:
+                name: notification-service-secrets
+                key: P3_QUEUE_URL
