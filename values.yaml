@@ -1,0 +1,6 @@
+provider:
+  name: aws
+serviceAccount:
+  name: ebs-external-dns-csi
+  annotations:
+     eks.amazonaws.com/role-arn: arn:aws:iam::452968854315:role/morgan-external_dns_policy

@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notification-service-q1
+  namespace: notification-service-app
+  labels:
+    app: notification-service-q1
+spec:
+  replicas: 2
+  selector:
+    matchLabels: 
+      app: morgan
+  template:
+    metadata:
+      labels:
+        app: morgan
+    spec:
+      serviceAccountName: notification-service-app-service-account
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchLabels:
+                  app: notification-service-q1
+              topologyKey: "kubernetes.io/hostname"
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: "kubernetes.io/hostname"
+          whenUnsatisfiable: ScheduleAnyway
+          labelSelector:
+            matchLabels:
+              app: notification-service-q1
+      containers:
+        - name: notification-service-q1
+          image: public.ecr.aws/i3m8z0o9/morgan/queues-repo:AWSProject_P1Service
+          imagePullPolicy: Always
+          ports:
+          - containerPort: 5001
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "250m"
+              memory: "256Mi"
+          env:
+          - name: AWS_REGION
+            valueFrom:
+              configMapKeyRef:
+                name: notification-service-config
+                key: AWS_REGION
+          - name: P1_QUEUE_URL
+            valueFrom:
+              secretKeyRef:
+                name: notification-service-secrets
+                key: P1_QUEUE_URL
