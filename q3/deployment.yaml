@@ -1,10 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: notification-service-3
+  name: notification-service-q3
   namespace: notification-service-app
   labels:
-    app: notification-service-3
+    app: notification-service-q3
 spec:
   replicas: 1
   selector:
@@ -21,7 +21,7 @@ spec:
           requiredDuringSchedulingIgnoredDuringExecution:
             - labelSelector:
                 matchLabels:
-                  app: notification-service-3
+                  app: notification-service-q3
               topologyKey: "kubernetes.io/hostname"
       topologySpreadConstraints:
         - maxSkew: 1
@@ -29,9 +29,9 @@ spec:
           whenUnsatisfiable: ScheduleAnyway
           labelSelector:
             matchLabels:
-              app: notification-service-3
+              app: notification-service-q3
       containers:
-        - name: notification-service-3
+        - name: notification-service-q3
           image: public.ecr.aws/i3m8z0o9/morgan/queues-repo:AWSProject_P3Service
           imagePullPolicy: Always
           ports:
@@ -52,5 +52,5 @@ spec:
           - name: P3_QUEUE_URL
             valueFrom:
               secretKeyRef:
-                name: notification-service-secrets
+                name: notification-service-secrets-q3
                 key: P3_QUEUE_URL

@@ -49,8 +49,28 @@ spec:
               configMapKeyRef:
                 name: notification-service-config
                 key: AWS_REGION
-          - name: P2_QUEUE_URL
+          - name: AWS_Q2
             valueFrom:
               secretKeyRef:
-                name: notification-service-secrets
-                key: P2_QUEUE_URL
+                name: notification-service-secrets-q2
+                key: AWS_Q2
+          - name: JIRA_KEY
+            valueFrom:
+              secretKeyRef:
+                name: notification-service-secrets-q2
+                key: JIRA_KEY
+          - name: EMAIL
+            valueFrom:
+              secretKeyRef:
+                name: notification-service-secrets-q2
+                key: EMAIL
+          - name: HOST
+            valueFrom:
+              secretKeyRef:
+                name: notification-service-secrets-q2
+                key: HOST
+          - name: PROJECT_ID
+            valueFrom:
+              secretKeyRef:
+                name: notification-service-secrets-q2
+                key: PROJECT_ID                              
