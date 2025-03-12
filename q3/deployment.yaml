@@ -6,7 +6,7 @@ metadata:
   labels:
     app: notification-service-3
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels: 
       app: morgan
@@ -15,7 +15,7 @@ spec:
       labels:
         app: morgan
     spec:
-      serviceAccountName: notification-service-app-service-account
+      serviceAccountName: morgan-sqs-role
       affinity:
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:

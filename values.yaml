@@ -1,6 +1,7 @@
 provider:
   name: aws
 serviceAccount:
-  name: ebs-external-dns-csi
+  name: external-dns
+  namespace: notification-service-app
   annotations:
-     eks.amazonaws.com/role-arn: arn:aws:iam::452968854315:role/morgan-external_dns_policy
+     eks.amazonaws.com/role-arn: arn:aws:iam::452968854315:role/morgan-v2-external_dns

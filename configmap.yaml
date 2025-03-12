@@ -5,3 +5,4 @@ metadata:
   namespace: notification-service-app
 data:
   AWS_REGION: "eu-west-2"
+  BASE_URL: "https://morgan.netbuildertraining.com"

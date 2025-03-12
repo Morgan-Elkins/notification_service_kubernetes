@@ -6,7 +6,7 @@ metadata:
   labels:
     app: notification-service
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels: 
       app: morgan
@@ -15,7 +15,7 @@ spec:
       labels:
         app: morgan
     spec:
-      serviceAccountName: notification-service-app-service-account
+      serviceAccountName: morgan-sqs-role
       affinity:
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
@@ -49,18 +49,23 @@ spec:
               configMapKeyRef:
                 name: notification-service-config
                 key: AWS_REGION
-          - name: P1_QUEUE_URL
+          - name: BASE_URL
+            valueFrom:
+              configMapKeyRef:
+                name: notification-service-config
+                key: BASE_URL
+          - name: AWS_Q1
             valueFrom:
               secretKeyRef:
                 name: notification-service-secrets
-                key: P1_QUEUE_URL
-          - name: P2_QUEUE_URL
+                key: AWS_Q1
+          - name: AWS_Q2
             valueFrom:
               secretKeyRef:
                 name: notification-service-secrets
-                key: P2_QUEUE_URL
-          - name: P3_QUEUE_URL
+                key: AWS_Q2
+          - name: AWS_Q3
             valueFrom:
               secretKeyRef:
                 name: notification-service-secrets
-                key: P3_QUEUE_URL
+                key: AWS_Q3
