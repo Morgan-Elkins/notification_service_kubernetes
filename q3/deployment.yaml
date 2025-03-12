@@ -49,8 +49,18 @@ spec:
               configMapKeyRef:
                 name: notification-service-config
                 key: AWS_REGION
-          - name: P3_QUEUE_URL
+          - name: AWS_Q3
             valueFrom:
               secretKeyRef:
                 name: notification-service-secrets-q3
-                key: P3_QUEUE_URL
+                key: AWS_Q3
+          - name: SENDER_EMAIL
+            valueFrom:
+              secretKeyRef:
+                name: notification-service-secrets-q3
+                key: SENDER_EMAIL
+          - name: RECIPIENT_EMAIL
+            valueFrom:
+              secretKeyRef:
+                name: notification-service-secrets-q3
+                key: RECIPIENT_EMAIL
