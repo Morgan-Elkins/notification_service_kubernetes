@@ -22,6 +22,6 @@ shutdwown:
 2. kubectl delete deployment aws-load-balancer-controller -n kube-system 
 
 notification-service-app
-<!-- helm upgrade -i aws-load-balancer-controller eks/aws-load-balancer-controller -n kube-system --set clusterName=morgan_eks_cluster --set serviceAccount.create=false --set serviceAccount.name=aws-alb-controller -->
+<!-- helm upgrade -i aws-load-balancer-controller eks/aws-load-balancer-controller -n kube-system --set clusterName=morgan_eks_cluster --set serviceAccount.create=false --set serviceAccount.name=aws-load-balancer-controller-->
 
 <!-- helm upgrade -i external-dns external-dns/external-dns --values values.yaml -n notification-service-app -->
